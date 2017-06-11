@@ -1,0 +1,73 @@
+/*nowx nowy 입력받는 함수*/
+
+/************충돌체크+이동시켜주는 함수************/
+int move_func(char direc) //nowx 와 nowy는 골뱅이의 처음 x좌표와 y좌표값이다.
+{
+   switch (direc)
+   {
+
+      case 'h' :
+         if(a[stage][nowy[stage]][nowx[stage]-1]=='#')//왼쪽 이동시 벽이 있을 때
+            nowx[stage]=nowx[stage];
+         else if(a[stage][nowy[stage]][nowx[stage]-1]=='$')//왼쪽 이동시 달러가 있을 때
+         {
+            if(a[stage][nowy[stage]][nowx[stage]-2]!='$' && a[stage][nowy[stage]][nowx[stage]-2]!='#')//왼쪽에 달러,벽이 없으면 이동
+            {
+               a[stage][nowy[stage]][nowx[stage]-2]=a[stage][nowy[stage]][nowx[stage]-1];
+               a[stage][nowy[stage]][nowx[stage]-1]=a[stage][nowy[stage]][nowx[stage]];
+               nowx[stage]=nowx[stage]-1;
+            }
+         }
+         else
+            nowx[stage]=nowx[stage]-1;//왼쪽 이동시 벽,달러가 없을 때
+         break;
+      case 'j' :
+         if(a[stage][nowy[stage]+1][nowx[stage]]=='#')//아래쪽 이동시 벽이 있을 때
+            nowy[stage]=nowy[stage];
+         else if(a[stage][nowy[stage]+1][nowx[stage]]=='$')//아래쪽 이동시 달러가 있을 때
+            {
+               if(a[stage][nowy[stage]+2][nowx[stage]]!='$' && a[stage][nowy[stage]+2][nowx[stage]]!='#')//2칸 아래쪽에 벽,달러가 없을 때
+               {
+                  a[stage][nowy[stage]+2][nowx[stage]]=a[stage][nowy[stage]+1][nowx[stage]];
+                  a[stage][nowy[stage]+1][nowx[stage]]=a[stage][nowy[stage]][nowx[stage]];
+                  nowy[stage]=nowy[stage]+1;
+               }
+            }
+         else
+            nowy[stage]=nowy[stage]+1;//아래쪽 이동시 벽,달러가 없을 때
+         break;
+      case 'k' :
+         if(a[stage][nowy[stage]-1][nowx[stage]]=='#')//위쪽 이동시 벽이 있을 때
+            nowy[stage]=nowy[stage];
+         else if(a[stage][nowy[stage]-1][nowx[stage]]=='$')//위쪽 이동시 달러가 있을 때
+         {
+            if(a[stage][nowy[stage]-2][nowx[stage]]!='$' && a[stage][nowy[stage]-2][nowx[stage]]!='#')//2칸 위쪽에 벽,달러가 없을 때
+            {
+               a[stage][nowy[stage]-2][nowx[stage]]=a[stage][nowy[stage]-1][nowx[stage]];
+               a[stage][nowy[stage]-1][nowx[stage]]=a[stage][nowy[stage]][nowx[stage]];
+               nowy[stage]=nowy[stage]-1;
+            }
+         }
+         else
+            nowy[stage]=nowy[stage]-1;//위쪽 이동시 벽,달러가 없을 때
+         break;
+      case 'l' :
+         if(a[stage][nowy[stage]][nowx[stage]+1]=='#')//오른쪽 이동시 벽이 있을 때
+            nowx[stage]=nowx[stage];
+         else if(a[stage][nowy[stage]][nowx[stage]+1]=='$')//오른쪽 이동시 달러가 있을 때
+         {
+            if(a[stage][nowy[stage]][nowx[stage]+2]!='$' && a[stage][nowy[stage]][nowx[stage]+2]!='#')//2칸 오른쪽에 벽,달러가 없을 때
+            {
+               a[stage][nowy[stage]][nowx[stage]+2]=a[stage][nowy[stage]][nowx[stage]+1];
+               a[stage][nowy[stage]][nowx[stage]+1]=a[stage][nowy[stage]][nowx[stage]];
+               nowx[stage]=nowx[stage]+1;
+            }
+         }
+         else
+            nowx[stage]=nowx[stage]+1;//오른쪽 이동시 벽,달러가 없을 때
+         break;
+
+
+   }
+   return 0;
+}
