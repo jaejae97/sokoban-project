@@ -1,0 +1,23 @@
+/*맵 세이브 함수*/
+/*현재 맵을 sokoban.txt에 저장*/
+void save()
+{
+   int i, j,k;
+   savestage=stage;
+   FILE *m;
+      m=fopen("sokoban.txt", "w");
+
+      for (k=1;k<6;k++)
+         {
+           fprintf(m, "map\n");
+           for(i=0; i<20; i++)
+          {
+            for(j=0; j<30; j++)
+            {
+               fprintf(m, "%c", a[k][i][j]);
+            }
+         }
+        }
+        fprintf(m,"end");
+      fclose(m);
+}
